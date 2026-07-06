@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultoria VIP — Thiago Ribeiro Personal Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --dark: #141414;
+    --card: #1E1E1E;
+    --border: #2A2A2A;
+    --green: #C8F135;
+    --green-dim: #a8cc1f;
+    --white: #F5F4F0;
+    --muted: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,241,53,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 28px;
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 10vw, 96px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--white);
+    max-width: 820px;
+    margin-bottom: 32px;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: #aaa;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-sub strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 18px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .cta-btn:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+  .cta-btn svg { width: 20px; height: 20px; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px; left: 24px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 96px 24px; }
+
+  .container { max-width: 840px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 60px);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .section-body {
+    font-size: 17px;
+    font-weight: 300;
+    color: #bbb;
+    line-height: 1.8;
+    max-width: 640px;
+  }
+
+  .section-body strong { color: var(--white); font-weight: 500; }
+
+  /* ── DOR ── */
+  .pain { background: var(--dark); }
+
+  .pain-list {
+    list-style: none;
+    margin-top: 48px;
+    display: grid;
+    gap: 2px;
+  }
+
+  .pain-list li {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 17px;
+    color: #999;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    line-height: 1.5;
+  }
+
+  .pain-list li::before {
+    content: '—';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pain-list li span { color: var(--white); }
+
+  /* ── SOLUÇÃO ── */
+  .solution-intro {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--white);
+    line-height: 1.1;
+    margin: 48px 0 32px;
+    border-left: 3px solid var(--green);
+    padding-left: 24px;
+  }
+
+  /* ── COMO FUNCIONA ── */
+  .how { background: var(--dark); }
+
+  .steps {
+    margin-top: 56px;
+    display: grid;
+    gap: 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 15px;
+    font-weight: 300;
+    color: #999;
+    line-height: 1.7;
+  }
+
+  /* ── PACOTE ── */
+  .package-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 48px;
+    margin-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .package-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--green);
+  }
+
+  .package-tag {
+    display: inline-block;
+    background: rgba(200,241,53,0.1);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .package-name {
+    font-family: var(--font-display);
+    font-size: 42px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .package-price {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .package-price strong {
+    font-family: var(--font-display);
+    font-size: 56px;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin: 8px 0 4px;
+  }
+
+  .package-items {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .package-items li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  .package-items li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── PARA QUEM É ── */
+  .forwhom { background: var(--dark); }
+
+  .forwhom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 600px) { .forwhom-grid { grid-template-columns: 1fr; } }
+
+  .forwhom-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+  }
+
+  .forwhom-card.yes { border-top: 2px solid var(--green); }
+  .forwhom-card.no  { border-top: 2px solid #444; }
+
+  .forwhom-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .forwhom-card.yes .forwhom-card-label { color: var(--green); }
+  .forwhom-card.no  .forwhom-card-label { color: var(--muted); }
+
+  .forwhom-card ul {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+  }
+
+  .forwhom-card ul li {
+    font-size: 14px;
+    color: #aaa;
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .forwhom-card.yes ul li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .forwhom-card.no  ul li::before { content: '✗'; color: #555; font-weight: 700; flex-shrink: 0; }
+
+  /* ── FAQ ── */
+  .faq-list {
+    margin-top: 56px;
+    display: grid;
+    gap: 2px;
+  }
+
+  details {
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+  }
+
+  details:first-child { border-top: 1px solid var(--border); }
+
+  summary {
+    padding: 24px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::after {
+    content: '+';
+    font-size: 22px;
+    color: var(--green);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    font-weight: 300;
+  }
+
+  details[open] summary::after { transform: rotate(45deg); }
+
+  .faq-answer {
+    padding: 0 0 28px;
+    font-size: 15px;
+    font-weight: 300;
+    color: #999;
+    line-height: 1.8;
+    max-width: 640px;
+  }
+
+  .faq-answer strong { color: var(--white); font-weight: 500; }
+
+  /* ── SOBRE ── */
+  .about { background: var(--dark); }
+
+  .about-quote {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--white);
+    line-height: 1.1;
+    margin: 40px 0 32px;
+    max-width: 680px;
+  }
+
+  .about-quote em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 52px;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    text-align: center;
+    padding: 120px 24px;
+  }
+
+  .final-cta .section-title {
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+
+  .final-cta .section-body {
+    margin: 0 auto 48px;
+    text-align: center;
+  }
+
+  .final-cta .cta-btn {
+    align-self: center;
+    margin: 0 auto;
+    font-size: 16px;
+    padding: 20px 48px;
+  }
+
+  .final-note {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+  }
+
+  /* ── STICKY CTA (mobile) ── */
+  .sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--green);
+    padding: 16px 24px;
+    z-index: 100;
+  }
+
+  .sticky-cta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--black);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .sticky-cta { display: block; }
+    body { padding-bottom: 64px; }
+    .hero { padding-top: 60px; }
+    .package-card { padding: 32px 24px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Thiago Ribeiro · Personal Trainer · 15 anos de experiência</p>
+    <h1 class="hero-headline">Você treina.<br>Mas não <em>evolui.</em></h1>
+    <p class="hero-sub">
+      Uma sessão por semana com acompanhamento profissional pode ser
+      <strong>o que está faltando entre o esforço que você já faz e o resultado que você ainda não tem.</strong>
+    </p>
+    <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Thiago%2C%20quero%20saber%20mais%20sobre%20a%20Consultoria%20VIP"
+       class="cta-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.034-1.388l-.36-.214-3.762.892.944-3.653-.235-.374A9.787 9.787 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+      Quero saber mais
+    </a>
+  </div>
+  <p class="hero-scroll">Role para baixo</p>
+</section>
+
+<!-- ── DOR ───────────────────────────────────────────────── -->
+<section class="pain">
+  <div class="container">
+    <p class="section-label">O problema</p>
+    <h2 class="section-title">Reconhece<br>alguma dessas?</h2>
+
+    <ul class="pain-list">
+      <li><span>Você frequenta a academia regularmente, mas os números na balança ou no espelho não mudam faz meses.</span></li>
+      <li><span>Não tem certeza se está fazendo os exercícios certo — e um detalhe errado pode estar travando todo o seu resultado.</span></li>
+      <li><span>Trocou de ficha algumas vezes, mas nunca sabe ao certo se a sequência, o volume e a carga estão corretos para o seu objetivo.</span></li>
+      <li><span>Sente que precisa de orientação, mas não quer pagar por personal 3x por semana nem abrir mão do horário que já funciona pra você.</span></li>
+      <li><span>Já pesquisou muito na internet e ainda assim fica na dúvida sobre o que realmente funciona para o seu corpo.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── SOLUÇÃO ────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">A solução</p>
+    <h2 class="section-title">Supervisão<br>quando importa</h2>
+    <p class="section-body">
+      A maioria das pessoas não precisa de acompanhamento diário. Precisa de <strong>direcionamento nos momentos certos</strong> — quando a técnica começa a sair, quando o treino deixa de progredir, quando o corpo precisa de um estímulo diferente para voltar a evoluir.
+    </p>
+
+    <blockquote class="solution-intro">
+      "Uma sessão por semana resolve o que meses de treino sozinho não conseguem."
+    </blockquote>
+
+    <p class="section-body">
+      Na Consultoria VIP, você continua treinando na sua academia, no seu horário — e <strong>uma vez por semana treina comigo</strong>. Corrijo o que precisa ser corrigido, intensifico o que está funcionando e ajusto o plano conforme seu corpo responde.
+    </p>
+  </div>
+</section>
+
+<!-- ── COMO FUNCIONA ──────────────────────────────────────── -->
+<section class="how">
+  <div class="container">
+    <p class="section-label">Como funciona</p>
+    <h2 class="section-title">Simples.<br>Sem complicação.</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <p class="step-title">Você compra o pacote</p>
+          <p class="step-desc">8 sessões de treino presencial comigo por R$ 1.000. Sem mensalidade, sem contrato fixo. Um pacote, oito treinos.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <p class="step-title">Agenda uma sessão por semana</p>
+          <p class="step-desc">Sem horário fixo semanal. Você agenda conforme a sua semana, com antecedência. A sessão só é contabilizada quando você treina.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <p class="step-title">Treinamos juntos</p>
+          <p class="step-desc">Cada sessão tem foco em correção técnica, progressão de cargas e intensificação. Você sai com o treino atualizado e entende exatamente o que mudar até a próxima sessão.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <p class="step-title">Evolui de verdade</p>
+          <p class="step-desc">O pacote dura entre 8 e 10 semanas. Tempo suficiente para corrigir o que estava errado, criar um novo padrão e sentir uma diferença real nos seus resultados.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PACOTE ─────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">O pacote</p>
+    <h2 class="section-title">Tudo que<br>você precisa.</h2>
+
+    <div class="package-card">
+      <span class="package-tag">Consultoria VIP</span>
+      <p class="package-name">Pacote Completo</p>
+      <div class="package-price">
+        Investimento total
+        <strong>R$ 1.000</strong>
+        8 sessões · sem mensalidade · sem horário fixo
+      </div>
+
+      <ul class="package-items">
+        <li>8 sessões de treino presencial com acompanhamento individual</li>
+        <li>Avaliação técnica dos seus exercícios principais na 1ª sessão</li>
+        <li>Correção e progressão de cargas a cada encontro</li>
+        <li>Treino atualizado para aplicar nos dias que você treina sozinho</li>
+        <li>Agendamento flexível — você marca conforme sua semana</li>
+        <li>Sem vínculo de continuidade — você renova se quiser</li>
+      </ul>
+
+      <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Thiago%2C%20quero%20contratar%20a%20Consultoria%20VIP"
+         class="cta-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.034-1.388l-.36-.214-3.762.892.944-3.653-.235-.374A9.787 9.787 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+        Quero contratar — R$ 1.000
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARA QUEM É ────────────────────────────────────────── -->
+<section class="forwhom">
+  <div class="container">
+    <p class="section-label">Para quem é</p>
+    <h2 class="section-title">Esse programa<br>é pra você?</h2>
+
+    <div class="forwhom-grid">
+      <div class="forwhom-card yes">
+        <p class="forwhom-card-label">Sim, é pra você se</p>
+        <ul>
+          <li>Você já treina em academia há pelo menos 3 meses</li>
+          <li>Sente que o treino travou e não sabe por quê</li>
+          <li>Quer supervisão sem abrir mão do seu horário atual</li>
+          <li>Não consegue arcar com personal diário, mas sabe que precisa de orientação</li>
+          <li>Está disposto a treinar com consistência nas semanas entre as sessões</li>
+        </ul>
+      </div>
+      <div class="forwhom-card no">
+        <p class="forwhom-card-label">Não é pra você se</p>
+        <ul>
+          <li>Você está começando agora e nunca treinou antes</li>
+          <li>Precisa de acompanhamento em todas as sessões semanais</li>
+          <li>Não tem disponibilidade para treinar nos outros dias sozinho</li>
+          <li>Está procurando uma solução rápida sem compromisso com o processo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-label">Perguntas frequentes</p>
+    <h2 class="section-title">Tirei suas<br>dúvidas?</h2>
+
+    <div class="faq-list">
+      <details>
+        <summary>Preciso treinar em uma academia específica?</summary>
+        <p class="faq-answer">Não. As sessões acontecem no local que for mais conveniente para você. Conversamos sobre isso no primeiro contato.</p>
+      </details>
+      <details>
+        <summary>Posso usar o pacote em um ritmo diferente de uma sessão por semana?</summary>
+        <p class="faq-answer">O formato ideal é <strong>uma sessão semanal</strong>, porque é esse intervalo que permite aplicar o que foi trabalhado e retornar com dúvidas reais. Sessões muito espaçadas reduzem o aproveitamento.</p>
+      </details>
+      <details>
+        <summary>O que acontece se eu precisar cancelar uma sessão agendada?</summary>
+        <p class="faq-answer">Reagende com pelo menos 24 horas de antecedência e a sessão não é descontada. Cancelamentos em cima da hora são contabilizados normalmente.</p>
+      </details>
+      <details>
+        <summary>Esse programa substitui um personal trainer convencional?</summary>
+        <p class="faq-answer">Não — e não é essa a proposta. A Consultoria VIP é para quem <strong>já tem autonomia para treinar</strong> e precisa de um ponto de apoio semanal. Quem está começando do zero ou tem necessidades específicas de reabilitação se beneficia mais de um acompanhamento diário.</p>
+      </details>
+      <details>
+        <summary>Após os 8 treinos, posso renovar?</summary>
+        <p class="faq-answer">Sim. Não há nenhum vínculo de continuidade. Se o programa fez sentido, você renova com o mesmo valor. Simples assim.</p>
+      </details>
+      <details>
+        <summary>Como funciona o pagamento?</summary>
+        <p class="faq-answer">O pacote é pago integralmente no início — R$ 1.000 pelos 8 treinos. Combinamos a forma de pagamento diretamente pelo WhatsApp.</p>
+      </details>
+      <details>
+        <summary>Thiago atende em Porto Velho?</summary>
+        <p class="faq-answer">Sim. Atendo presencialmente em Porto Velho, Rondônia. Fale comigo pelo WhatsApp para combinarmos o local das sessões.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE ──────────────────────────────────────────────── -->
+<section class="about">
+  <div class="container">
+    <p class="section-label">Quem vai te orientar</p>
+    <h2 class="section-title">Thiago<br>Ribeiro</h2>
+
+    <blockquote class="about-quote">
+      "Resultado não vem de treinar <em>mais.</em><br>Vem de treinar <em>certo.</em>"
+    </blockquote>
+
+    <p class="section-body">
+      Sou personal trainer com <strong>15 anos de experiência</strong>, baseado em Porto Velho. Trabalho com clientes individuais, em duplas e com programas de supervisão — sempre com foco em resultado real, não em volume de sessões.
+    </p>
+    <br>
+    <p class="section-body">
+      A Consultoria VIP nasceu da observação de que a maioria das pessoas que treina sozinha <strong>comete os mesmos erros técnicos por meses ou anos</strong> sem perceber. Uma correção pontual vale mais do que semanas de treino equivocado.
+    </p>
+
+    <div class="about-stats">
+      <div>
+        <p class="stat-num">15</p>
+        <p class="stat-label">anos de experiência</p>
+      </div>
+      <div>
+        <p class="stat-num">8</p>
+        <p class="stat-label">sessões por pacote</p>
+      </div>
+      <div>
+        <p class="stat-num">1x</p>
+        <p class="stat-label">por semana, sem horário fixo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ──────────────────────────────────────────── -->
+<section class="final-cta">
+  <div class="container" style="display:flex;flex-direction:column;align-items:center;">
+    <p class="section-label" style="text-align:center;">Vagas limitadas</p>
+    <h2 class="section-title">Chega de treinar<br>sem evoluir.</h2>
+    <p class="section-body" style="text-align:center;">
+      Mando uma mensagem, a gente conversa sobre sua situação e, se fizer sentido, você já garante sua vaga.
+    </p>
+    <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Thiago%2C%20quero%20saber%20mais%20sobre%20a%20Consultoria%20VIP"
+       class="cta-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.034-1.388l-.36-.214-3.762.892.944-3.653-.235-.374A9.787 9.787 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+      Falar com Thiago no WhatsApp
+    </a>
+    <p class="final-note">Sem compromisso. Só uma conversa.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Thiago Ribeiro Personal Trainer · Porto Velho, Rondônia</p>
+</footer>
+
+<!-- Sticky CTA mobile -->
+<div class="sticky-cta">
+  <a href="https://wa.me/5500000000000?text=Ol%C3%A1%20Thiago%2C%20quero%20saber%20mais%20sobre%20a%20Consultoria%20VIP"
+     target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.855L0 24l6.335-1.502A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.034-1.388l-.36-.214-3.762.892.944-3.653-.235-.374A9.787 9.787 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+    Falar com Thiago · WhatsApp
+  </a>
+</div>
+
+</body>
+</html>
